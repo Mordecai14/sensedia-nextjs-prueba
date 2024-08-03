@@ -3,6 +3,8 @@ import Header from "@/Containers/Navs/Header";
 import { UsersView } from "@/Containers/User";
 import Register from "@/Containers/Register";
 
+// const API_URL = "https://b507-189-243-221-11.ngrok-free.app/api/v1"
+
 async function getData() {
   const resUsers = await fetch(
     "https://b507-189-243-221-11.ngrok-free.app/api/v1/users"
@@ -10,10 +12,6 @@ async function getData() {
   const resPosts = await fetch(
     "https://b507-189-243-221-11.ngrok-free.app/api/v1/posts"
   );
-  const resAlbums = await fetch(
-    "https://b507-189-243-221-11.ngrok-free.app/api/v1/albums"
-  );
-
   const resDaysOfWeek = await fetch("http://localhost:3000/api/daysOfWeek");
   const resCities = await fetch("http://localhost:3000/api/cities");
 
@@ -30,13 +28,28 @@ async function getData() {
   const daysOfWeek = await resDaysOfWeek.json();
   const cities = await resCities.json();
   const posts = await resPosts.json();
-  const albums = await resAlbums.json();
+
+  const albumsData = await Promise.all(
+    users.users.map(async (user: any) => {
+      const resAlbums = await fetch(
+        `https://b507-189-243-221-11.ngrok-free.app/api/v1/users/${user.id}/albums`
+      );
+      const albumsResponse = await resAlbums.json();
+      const totalAlbums = albumsResponse.albums
+        ? albumsResponse.albums.length
+        : 0;
+      return {
+        user_id: user.id,
+        totalAlbums: totalAlbums,
+      };
+    })
+  );
 
   return {
     users,
     daysOfWeek,
     cities,
-    albums,
+    albums: albumsData,
     posts,
   };
 }

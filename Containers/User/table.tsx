@@ -42,16 +42,10 @@ const TableData: FC<Props> = ({ cities, daysOfWeek, users, albums, posts }) => {
   };
 
   const getAlbumsForUser = (userId: string) => {
-    if (Array.isArray(albums)) {
-      const res = albums
-        .filter((album: any) => album.user_id === userId)
-        .map((album: any) => album.content)
-        .join(", ");
-      console.log(userId);
-      console.log(albums);
-      return res;
-    }
-    return "";
+    return albums
+      .filter((album: any) => album.user_id === userId)
+      .map((album: any) => album.totalAlbums)
+      .join(", ");
   };
 
   const getRandomElement = (arr: string[]) => {
