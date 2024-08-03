@@ -35,10 +35,7 @@ const TableData: FC<Props> = ({ cities, daysOfWeek, users, albums, posts }) => {
   }, [page, users]);
 
   const getPostsForUser = (userId: string) => {
-    return posts
-      .filter((post: Post) => post.user_id === userId)
-      .map((post: Post) => post.content)
-      .join(", ");
+    return posts.filter((post: Post) => post.user_id === userId).length;
   };
 
   const getAlbumsForUser = (userId: string) => {
