@@ -32,3 +32,9 @@ export interface Breadcrumb {
   link: string;
   label: string;
 }
+
+export interface User {
+  name: string;
+  email: string;
+  avatar: string;
+}

@@ -15,6 +15,7 @@ import Trophy from "@/public/trophy.svg";
 import Lvl from "@/public/level.svg";
 import { BreadCrumb } from "@/components/breadCrumbs";
 import { Breadcrumb } from "@/libs/types";
+import UserMenu from "@/components/userMenu";
 
 const Header = () => {
   const path = usePathname();
@@ -70,8 +71,9 @@ const Header = () => {
             <Image src={QuestionIcon} alt="help" className="cursor-pointer" />
             <Image src={MenuIcon} alt="toolBox" className="cursor-pointer" />
             <Image src={Separator} alt="separator" />
-            <Image src={Avatar} alt="avatar image" />
-            <p className="text-gray-500 p-0">Nombre de usuario</p>
+            <p className="text-gray-500 p-0">
+              <UserMenu />
+            </p>
           </div>
         </div>
       </section>

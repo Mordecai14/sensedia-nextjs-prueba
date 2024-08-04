@@ -8,17 +8,8 @@ export default async function UserName({
 }: {
   params: { username: string };
 }) {
-  console.log(params);
-
-  //   if (!params.username) {
-  //     console.error("Username parameter is missing");
-  //     return <SkeletonComponent />;
-  //   }
-
   try {
     const { user } = await getUserdetail(params.username);
-
-    console.log(user);
 
     if (!user) {
       return (
