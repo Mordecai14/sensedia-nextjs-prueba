@@ -8,3 +8,16 @@
     text-wrap: balance;
   }
 } */
+
+.action-column,
+.action-cell,
+.floating-button {
+  display: none;
+}
+
+.table-row:hover .action-column,
+.table-row:hover .action-cell,
+.table-row:hover .floating-button {
+  display: table-cell;
+}
+

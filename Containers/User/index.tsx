@@ -1,6 +1,6 @@
 import InputSearch from "@/components/inputSearch";
 import TableData from "@/Containers/User/table";
-import { Album, Post, Users } from "@/utils/types";
+import { Album, Post, Users } from "@/libs/types";
 import { FC } from "react";
 
 interface Props {
