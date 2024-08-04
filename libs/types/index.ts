@@ -27,3 +27,8 @@ export interface CreateUser {
   name: string;
   password: string;
 }
+
+export interface Breadcrumb {
+  link: string;
+  label: string;
+}

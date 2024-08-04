@@ -6,7 +6,6 @@ import Link from "next/link";
 
 import SensediaLogo from "@/public/sensedia.svg";
 import Sensedia from "@/public/sensedia-logo.svg";
-import ArrowR from "@/public/arrow-r.svg";
 import QuestionIcon from "@/public/question.svg";
 import MenuIcon from "@/public/menuIco.svg";
 import Separator from "@/public/separator.svg";
@@ -14,10 +13,40 @@ import Avatar from "@/public/Avatar.svg";
 import Type from "@/public/type.svg";
 import Trophy from "@/public/trophy.svg";
 import Lvl from "@/public/level.svg";
+import { BreadCrumb } from "@/components/breadCrumbs";
+import { Breadcrumb } from "@/libs/types";
 
 const Header = () => {
   const path = usePathname();
-  console.log(path);
+
+  const getPathArray = (path: string | null): Breadcrumb[] => {
+    if (path === "/user") {
+      return [
+        { link: "/", label: "Home" },
+        { link: "/user", label: "Lista de Usuarios" },
+      ];
+    } else if (path === "/user/new") {
+      return [
+        { link: "/", label: "Home" },
+        { link: "/user", label: "Usuarios" },
+        { link: "/user/new", label: "Nuevo Usuario" },
+      ];
+    } else if (path?.includes("/user/")) {
+      return [
+        { link: "/", label: "Home" },
+        { link: "/user", label: "Usuario" },
+        { link: path, label: "Detalle" },
+      ];
+    } else {
+      return [
+        { link: "/", label: "BIENVENIDO" },
+        { link: "/", label: "Home" },
+      ];
+    }
+  };
+
+  const pathArray = getPathArray(path);
+
   return (
     <header className="">
       <section className="bg-sensGray p-4 h-[87px]">
@@ -35,17 +64,7 @@ const Header = () => {
             <Link href="/">
               <Image src={Sensedia} alt="sensedia" className="mb-[-10px]" />
             </Link>
-            <p className="text-sensPurple p-0 pt-[10px]">BIENVENIDO</p>
-            <Image src={ArrowR} alt="arrow" className="pt-[10px]" />
-            <p className="text-gray-500 p-0 pt-[10px]">
-              {path === "user"
-                ? "Lista de Usuarios"
-                : path === "/user/new"
-                ? "Nuevo Usuario"
-                : path?.includes("/user")
-                ? "Detalle de Usuario"
-                : "Registro"}
-            </p>
+            <BreadCrumb path={pathArray} />
           </div>
           <div className="flex items-center justify-start h-full gap-[0.8rem]">
             <Image src={QuestionIcon} alt="help" className="cursor-pointer" />
@@ -85,5 +104,4 @@ const Header = () => {
     </header>
   );
 };
-
 export default Header;
