@@ -3,8 +3,11 @@ import { useState, useRef, useCallback, useMemo } from "react";
 import { Input, Button, CheckboxGroup, Checkbox } from "@nextui-org/react";
 import { CreateUser } from "@/libs/types";
 import { createUser } from "@/libs/actions";
+import { usePathname, useRouter } from "next/navigation";
 
 export const RegisterForm = () => {
+  const { push } = useRouter();
+  const path = usePathname();
   const [loading, setLoading] = useState(false);
   const [selectedDays, setSelectedDays] = useState<string[]>([]);
   const [value, setValue] = useState("");
@@ -42,7 +45,12 @@ export const RegisterForm = () => {
       };
 
       await createUser(userData)
-        .then((res) => console.log(res))
+        .then((res) => {
+          console.log(res);
+          if (path?.includes("user/new")) {
+            push("/user");
+          }
+        })
         .catch((err) => console.log(err));
       //TODO agregar toaastify
 

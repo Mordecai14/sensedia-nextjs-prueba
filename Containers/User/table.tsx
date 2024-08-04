@@ -18,6 +18,7 @@ import {
 import { DropDownPaginate } from "../../components/Dropdowns/dropdownPaginate";
 import { Album, Post, Users } from "@/libs/types";
 import { deleteUser } from "@/libs/actions";
+import Link from "next/link";
 
 interface Props {
   users: Users[];
@@ -152,7 +153,11 @@ const TableData: FC<Props> = ({ cities, daysOfWeek, users, albums, posts }) => {
         <TableBody items={items}>
           {items.map((item, id) => (
             <TableRow key={id} className="table-row">
-              <TableCell>{item.id}</TableCell>
+              <TableCell>
+                <Link href={`/user/${item.id}`} className="hover:text-blue-400">
+                  {item.id}
+                </Link>
+              </TableCell>
               <TableCell>{item.name}</TableCell>
               <TableCell>{item.email}</TableCell>
               <TableCell>{getRandomElement(cities)}</TableCell>
