@@ -1,7 +1,10 @@
 import Footer from "@/Containers/Navs/Footer";
 import Header from "@/Containers/Navs/Header";
+import { AlbumDetail, PostDetail } from "@/Containers/User/details";
 import { SkeletonComponent } from "@/components/Skeleton";
-import { getUserdetail } from "@/libs/data";
+import { getAlbumByUser, getPostsByUser, getUserdetail } from "@/libs/data";
+import { Album } from "@/libs/types";
+import { Accordion, AccordionItem, Divider } from "@nextui-org/react";
 
 export default async function UserName({
   params,
@@ -10,6 +13,8 @@ export default async function UserName({
 }) {
   try {
     const { user } = await getUserdetail(params.username);
+    const { album } = await getAlbumByUser(params.username);
+    const { post } = await getPostsByUser(params.username);
 
     if (!user) {
       return (
@@ -25,13 +30,13 @@ export default async function UserName({
     return (
       <>
         <Header />
-        <main className="flex flex-col items-center h-[71vh] justify-center py-24 px-[18%]">
+        <main className="flex flex-col items-center min-h-[71vh] justify-center py-24 px-[18%]">
           <div className="max-w-md mx-auto bg-white shadow-md rounded-lg overflow-hidden md:max-w-2xl">
-            <div className="md:flex">
+            <div className="flex flex-col justify-center">
+              <h2 className="text-center font-bold text-sensPurple text-2xl">
+                Detalle
+              </h2>
               <div className="w-full p-4">
-                <h2 className="text-2xl font-bold text-gray-900">
-                  Detalle del usuario
-                </h2>
                 <div className="mt-4">
                   <p className="text-gray-700">
                     <strong>ID:</strong> {user.id}
@@ -54,6 +59,10 @@ export default async function UserName({
               </div>
             </div>
           </div>
+          <Divider className="my-10" />
+          <AlbumDetail album={album} />
+          <Divider className="my-10" />
+          <PostDetail post={post} />
         </main>
         <Footer />
       </>
@@ -63,7 +72,7 @@ export default async function UserName({
     return (
       <>
         <Header />
-        error, param missing
+        error, Parámtro desconocido
         <SkeletonComponent />
         <Footer />
       </>

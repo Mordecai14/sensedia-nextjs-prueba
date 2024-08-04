@@ -50,3 +50,19 @@ export async function getUserdetail(userid: string) {
     user: user.user,
   };
 }
+
+export async function getAlbumByUser(userId: string) {
+  const resAlbum = await fetch(`${ApiUrl}/users/${userId}/albums`);
+  const album = await resAlbum.json();
+  return {
+    album: album.albums,
+  };
+}
+
+export async function getPostsByUser(userId: string) {
+  const resPost = await fetch(`${ApiUrl}/users/${userId}/posts`);
+  const post = await resPost.json();
+  return {
+    post: post.posts,
+  };
+}

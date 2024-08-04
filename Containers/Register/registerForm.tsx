@@ -46,7 +46,6 @@ export const RegisterForm = () => {
 
       await createUser(userData)
         .then((res) => {
-          console.log(res);
           if (path?.includes("user/new")) {
             push("/user");
           }

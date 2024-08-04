@@ -81,7 +81,6 @@ const TableData: FC<Props> = ({ cities, daysOfWeek, users, albums, posts }) => {
   }, [page]);
 
   const handleDeleteClick = (userId: string) => {
-    console.log(userId);
     setSelectedUserId(userId);
     onOpen();
   };
@@ -141,13 +140,13 @@ const TableData: FC<Props> = ({ cities, daysOfWeek, users, albums, posts }) => {
         className="mt-[40px]"
       >
         <TableHeader>
-          <TableColumn key="name">USUARIO</TableColumn>
-          <TableColumn key="role">NOMBRE</TableColumn>
-          <TableColumn key="status">CORREO ELECTRÓNICO</TableColumn>
+          <TableColumn key="id">USUARIO</TableColumn>
+          <TableColumn key="name">NOMBRE</TableColumn>
+          <TableColumn key="email">CORREO ELECTRÓNICO</TableColumn>
           <TableColumn key="city">CIUDAD</TableColumn>
           <TableColumn key="weekdays">DIAS DE LA SEMANA</TableColumn>
           <TableColumn key="posts">POSTS</TableColumn>
-          <TableColumn key="posts">ALBUMS</TableColumn>
+          <TableColumn key="albums">ALBUMS</TableColumn>
           <TableColumn key="actions">Borrar</TableColumn>
         </TableHeader>
         <TableBody items={items}>

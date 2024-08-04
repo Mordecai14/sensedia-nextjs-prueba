@@ -71,9 +71,9 @@ const Header = () => {
             <Image src={QuestionIcon} alt="help" className="cursor-pointer" />
             <Image src={MenuIcon} alt="toolBox" className="cursor-pointer" />
             <Image src={Separator} alt="separator" />
-            <p className="text-gray-500 p-0">
+            <div className="text-gray-500 p-0">
               <UserMenu />
-            </p>
+            </div>
           </div>
         </div>
       </section>

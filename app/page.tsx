@@ -4,8 +4,6 @@ import { UsersView } from "@/Containers/User";
 import Register from "@/Containers/Register";
 import { getData } from "@/libs/data";
 
-// const API_URL = "https://b507-189-243-221-11.ngrok-free.app/api/v1"
-
 export default async function Home() {
   const { users, daysOfWeek, cities, albums, posts } = await getData();
 
