@@ -91,7 +91,7 @@ Para ejecutar las pruebas:
     ├── public
     ```
 
-- **** tests****: Aquí se encuentran los tests de Jest.
+- **tests**: Aquí se encuentran los tests de Jest.
 - **app**: Carpeta base de la aplicación.
 - **components**: Componentes reutilizables de la interfaz de usuario.
 - **containers**: Partes visuales más grandes conformadas por conjuntos de componentes.
