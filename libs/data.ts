@@ -1,4 +1,4 @@
-const ApiUrl = "https://b507-189-243-221-11.ngrok-free.app/api/v1";
+const ApiUrl = process.env.API_BASE_URL;
 
 export async function getData() {
   const resUsers = await fetch(`${ApiUrl}/users`);
@@ -22,15 +22,46 @@ export async function getData() {
 
   const albumsData = await Promise.all(
     users.users.map(async (user: any) => {
-      const resAlbums = await fetch(`${ApiUrl}/users/${user.id}/albums`);
-      const albumsResponse = await resAlbums.json();
-      const totalAlbums = albumsResponse.albums
-        ? albumsResponse.albums.length
-        : 0;
-      return {
-        user_id: user.id,
-        totalAlbums: totalAlbums,
-      };
+      try {
+        const resAlbums = await fetch(`${ApiUrl}/users/${user.id}/albums`);
+
+        if (!resAlbums.ok) {
+          console.error(
+            `Error fetching albums for user ${user.id}: ${resAlbums.statusText}`
+          );
+          return {
+            user_id: user.id,
+            totalAlbums: 0,
+          };
+        }
+
+        const contentType = resAlbums.headers.get("content-type");
+        if (contentType && contentType.includes("application/json")) {
+          const albumsResponse = await resAlbums.json();
+          const totalAlbums = albumsResponse.albums
+            ? albumsResponse.albums.length
+            : 0;
+
+          return {
+            user_id: user.id,
+            totalAlbums: totalAlbums,
+          };
+        } else {
+          console.error(
+            `Expected JSON response but got ${contentType} for user ${user.id}`
+          );
+          return {
+            user_id: user.id,
+            totalAlbums: 0,
+          };
+        }
+      } catch (error) {
+        console.error(`Error processing albums for user ${user.id}:`, error);
+        return {
+          user_id: user.id,
+          totalAlbums: 0,
+        };
+      }
     })
   );
 
@@ -39,7 +70,7 @@ export async function getData() {
     daysOfWeek,
     cities,
     albums: albumsData,
-    posts,
+    posts: posts.posts,
   };
 }
 

@@ -22,9 +22,9 @@ export async function deleteUser(userId: string) {
     }
 
     revalidatePath("/");
-    return { message: "Usuario borrado exitosamente" };
+    return "Usuario borrado exitosamente";
   } catch (error: any) {
-    return { message: "Error del servidor", error: error.message };
+    return "Error del servidor" + error.message;
   }
 }
 

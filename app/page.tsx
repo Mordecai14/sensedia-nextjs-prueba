@@ -16,7 +16,7 @@ export default async function Home() {
           daysOfWeek={daysOfWeek}
           cities={cities}
           albums={albums}
-          posts={posts.posts}
+          posts={posts}
         />
         <Register />
       </main>

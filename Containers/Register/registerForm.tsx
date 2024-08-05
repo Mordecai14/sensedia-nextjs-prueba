@@ -44,14 +44,20 @@ export const RegisterForm = () => {
         email: formFields.email as string,
       };
 
+      if (!userData.name || !userData.password || !userData.email) {
+        setLoading(false);
+        return;
+      }
+
       await createUser(userData)
         .then((res) => {
+          //TODO agregar toaastify
+          alert(res);
           if (path?.includes("user/new")) {
             push("/user");
           }
         })
         .catch((err) => console.log(err));
-      //TODO agregar toaastify
 
       setLoading(false);
       reset();

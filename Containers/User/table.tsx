@@ -29,6 +29,7 @@ interface Props {
 }
 
 const TableData: FC<Props> = ({ cities, daysOfWeek, users, albums, posts }) => {
+  console.log({ cities, daysOfWeek, users, albums, posts });
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [page, setPage] = useState(1);
   const [selectedUserId, setSelectedUserId] = useState("");
@@ -46,6 +47,10 @@ const TableData: FC<Props> = ({ cities, daysOfWeek, users, albums, posts }) => {
   };
 
   const getAlbumsForUser = (userId: string) => {
+    if (!albums) {
+      return "";
+    }
+
     return albums
       .filter((album: any) => album.user_id === userId)
       .map((album: any) => album.totalAlbums)
@@ -87,8 +92,12 @@ const TableData: FC<Props> = ({ cities, daysOfWeek, users, albums, posts }) => {
 
   const handleConfirmDelete = async () => {
     if (selectedUserId) {
-      await deleteUser(selectedUserId);
-      //TODO mostrar toastify en .then()
+      await deleteUser(selectedUserId)
+        .then((res) => {
+          alert(res);
+          //TODO mostrar toastify en .then()
+        })
+        .catch((err) => console.log(err));
     }
   };
 
