@@ -1,3 +1,4 @@
+"use client";
 import { useState } from "react";
 import { Input } from "@nextui-org/input";
 import Image from "next/image";
