@@ -1,6 +1,6 @@
 describe("User Menu", () => {
   beforeEach(() => {
-    cy.intercept("GET", `${process.env.DB_LOCAL}/api/usermenu`, {
+    cy.intercept("GET", `${process.env.API_LOCAL}/api/usermenu`, {
       statusCode: 200,
       body: {
         user: {

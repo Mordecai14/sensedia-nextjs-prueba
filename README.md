@@ -1,36 +1,112 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Prueba Técnica | Sensedia
 
-## Getting Started
+## Descripción del Proyecto
 
-First, run the development server:
+Este proyecto es una prueba técnica para **Sensedia**. Desarrollado con Next.js 14, incluye funcionalidades completas para un CRUD con conexión a una base de datos.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Instalación
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+1. Clona el repositorio:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+   ```bash
+   git clone https://github.com/Mordecai14/sensedia-nextjs-prueba.git
+   ```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+2. Instala las dependencias:
 
-## Learn More
+   ```bash
+   npm install
+   # o
+   yarn install
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+3. Configura las variables de entorno:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   Copia el archivo `.env.sample` y renómbralo a `.env`. Luego, completa los valores necesarios.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+   ```
+   API_BASE_URL=<RemoteApiUrl>/api/v1
+   API_LOCAL=http://localhost:3000
+   ```
 
-## Deploy on Vercel
+## Uso
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Para iniciar el servidor de desarrollo:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+    ```bash
+    npm run dev
+    # o
+    yarn dev
+    ```
+
+El proyecto estará disponible en `http://localhost:3000`.
+
+## Pruebas
+
+### Pruebas Unitarias con Jest
+
+Las pruebas unitarias están configuradas con Jest y React Testing Library. Para ejecutar las pruebas:
+
+    ```bash
+    npm test
+    # o
+    yarn test
+    ```
+
+### Pruebas End-to-End (E2E) con Cypress
+
+Las pruebas E2E están configuradas con Cypress.
+
+> **Es la primera vez que utilizo este tipo de pruebas, sin embargo estuve investigando sobre su funcionamiento y realicé un ejemplo de implementación básico.**
+
+Para ejecutar las pruebas:
+
+1. Inicia el servidor de desarrollo en una terminal:
+
+   ```bash
+   npm run dev
+   # o
+   yarn dev
+   ```
+
+2. En otra terminal, ejecuta Cypress:
+
+   ```bash
+   npx cypress open
+   # o
+   yarn cy:open
+   ```
+
+## Estructura del Proyecto
+
+    ```bash
+    .
+    ├── __tests__
+    ├── app
+    ├── components
+    ├── containers
+    ├── coverage
+    ├── cypress
+    ├── libs
+    ├── public
+    ```
+
+- **** tests****: Aquí se encuentran los tests de Jest.
+- **app**: Carpeta base de la aplicación.
+- **components**: Componentes reutilizables de la interfaz de usuario.
+- **containers**: Partes visuales más grandes conformadas por conjuntos de componentes.
+- **coverage**: Carpeta de la cobertura de las pruebas.
+- **cypress**: Directorio para pruebas E2E.
+- **libs**: Funciones y utilidades.
+- **public**: Archivos estáticos.
+
+## Autor
+
+**Aramen Meza Mendoza**
+arammendoza.97@gmail.com
+
+---
+
+¡Gracias por revisar este proyecto! Si tienes alguna pregunta o sugerencia, no dudes en contactarme.
+
+---

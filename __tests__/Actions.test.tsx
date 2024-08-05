@@ -9,7 +9,7 @@ const mockUser = {
   updated_at: "2024-08-02T07:28:28.397891-06:00",
 };
 
-const localUrlApi = `${process.env.DB_LOCAL}/api/usermenu`;
+const localUrlApi = `${process.env.API_LOCAL}/api/usermenu`;
 const remoteUrlApi = `${process.env.API_BASE_URL}/users/create`;
 
 global.fetch = jest.fn();

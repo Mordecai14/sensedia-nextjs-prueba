@@ -2,7 +2,7 @@
 import { revalidatePath } from "next/cache";
 import { CreateUser, User } from "./types";
 
-const localUrlApi = `${process.env.DB_LOCAL}/api/usermenu`;
+const localUrlApi = `${process.env.API_LOCAL}/api/usermenu`;
 const remoteUrlApi = `${process.env.API_BASE_URL}/users/create`;
 
 export async function deleteUser(userId: string) {
